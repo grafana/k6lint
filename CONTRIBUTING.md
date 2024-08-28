@@ -29,12 +29,26 @@ cdo
 Contributing will require the use of some tools, which can be installed most easily with a well-configured [eget] tool.
 
 ```bash
+eget mikefarah/yq
+eget atombender/go-jsonschema
 eget szkiba/mdcode
 eget golangci/golangci-lint
 eget goreleaser/goreleaser
 ```
 
 [tools]: (#tools---install-the-required-tools)
+
+## schema - Contribute to the JSON schema
+
+The JSON schema of the compliance test can be found in the [compliance.schema.yaml] file, after modification of which the schema in JSON format ([compliance.schema.json]) and the golang data model ([compliance_gen.go]) must be regenerated.
+
+```bash
+yq -o=json -P docs/compliance.schema.yaml > docs/compliance.schema.json
+go-jsonschema --capitalization ID -p k6lint --only-models -o compliance_gen.go docs/compliance.schema.yaml
+```
+
+[compliance.schema.json]: docs/compliance.schema.json
+[compliance_gen.go]: compliance_gen.go
 
 ## readme - Update README.md
 
@@ -113,4 +127,4 @@ rm -rf build
 The most robust thing is to update everything after modifying the source.
 
 Requires
-: example, readme
+: schema, readme

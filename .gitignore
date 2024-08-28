@@ -1,4 +1,4 @@
 /build
 /coverage.txt
-/k6xlint
-/k6xlint.exe
+/k6lint
+/k6lint.exe
