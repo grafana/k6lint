@@ -1,0 +1,42 @@
+{
+  "checks": [
+    {
+      "details": "found `github.com/grafana/xk6-sql` as go module",
+      "id": "module",
+      "passed": true
+    },
+    {
+      "details": "no `replace` directive in the `go.mod` file",
+      "id": "replace",
+      "passed": true
+    },
+    {
+      "details": "found `README.md` as README file",
+      "id": "readme",
+      "passed": true
+    },
+    {
+      "details": "found `examples` as examples directory",
+      "id": "examples",
+      "passed": true
+    },
+    {
+      "details": "found `LICENSE` as `Apache-2.0` license",
+      "id": "license",
+      "passed": true
+    },
+    {
+      "details": "found git worktree",
+      "id": "git",
+      "passed": true
+    },
+    {
+      "details": "found `6` versions, the latest is `v0.3.0`",
+      "id": "versions",
+      "passed": true
+    }
+  ],
+  "grade": "A",
+  "level": 100,
+  "timestamp": 1724833956
+}

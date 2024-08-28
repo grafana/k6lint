@@ -1,0 +1,21 @@
+k6 extension compliance
+──────────┬─────────────
+ grade  A │ level  100% 
+
+Details
+───────
+✔ module              
+  found `github.com/grafana/xk6-sql` as go module
+✔ replace             
+  no `replace` directive in the `go.mod` file
+✔ readme              
+  found `README.md` as README file
+✔ examples            
+  found `examples` as examples directory
+✔ license             
+  found `LICENSE` as `Apache-2.0` license
+✔ git                 
+  found git worktree
+✔ versions            
+  found `6` versions, the latest is `v0.3.0`
+
