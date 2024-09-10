@@ -13,7 +13,7 @@ The detailed result of the checks are described in a [JSON schema](https://grafa
 ### Checkers
 
   - `module` - checks if there is a valid go.mod
-  - `replace` - checks if there is a replace directive in go.mod
+  - `replace` - checks if there is no replace directive in go.mod
   - `readme` - checks if there is a readme file
   - `examples` - checks if there are files in the examples directory
   - `license` - checks whether there is a suitable OSS license
