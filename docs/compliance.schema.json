@@ -81,7 +81,9 @@
         "examples",
         "license",
         "git",
-        "versions"
+        "versions",
+        "build",
+        "smoke"
       ]
     }
   }

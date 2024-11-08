@@ -2,7 +2,6 @@ package k6lint
 
 import (
 	"context"
-	"os"
 	"regexp"
 )
 
@@ -11,15 +10,13 @@ var reREADME = regexp.MustCompile(
 )
 
 func checkerReadme(_ context.Context, dir string) *checkResult {
-	entries, err := os.ReadDir(dir) //nolint:forbidigo
+	_, name, err := findFile(reREADME, dir)
 	if err != nil {
-		return checkFailed("")
+		return checkError(err)
 	}
 
-	for _, entry := range entries {
-		if reREADME.Match([]byte(entry.Name())) {
-			return checkPassed("found `%s` as README file", entry.Name())
-		}
+	if len(name) > 0 {
+		return checkPassed("found `%s` as README file", name)
 	}
 
 	return checkFailed("no README file found")

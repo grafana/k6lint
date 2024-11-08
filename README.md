@@ -19,6 +19,8 @@ The detailed result of the checks are described in a [JSON schema](https://grafa
   - `license` - checks whether there is a suitable OSS license
   - `git` - checks if the directory is git workdir
   - `versions` - checks for semantic versioning git tags
+  - `build` - checks if k6 can be built with the extension
+  - `smoke` - checks if the smoke test script exists and runs successfully
 
 ## Install
 
@@ -58,7 +60,11 @@ Details
 ✔ git                 
   found git worktree
 ✔ versions            
-  found `6` versions, the latest is `v0.3.0`
+  found `13` versions, the latest is `v1.0.0`
+✔ build               
+  can be built with the latest k6 version
+✔ smoke               
+  `smoke.test.ts` successfully run with k6
 
 ```
 
@@ -99,14 +105,24 @@ Details
       "passed": true
     },
     {
-      "details": "found `6` versions, the latest is `v0.3.0`",
+      "details": "found `13` versions, the latest is `v1.0.0`",
       "id": "versions",
+      "passed": true
+    },
+    {
+      "details": "can be built with the latest k6 version",
+      "id": "build",
+      "passed": true
+    },
+    {
+      "details": "`smoke.test.ts` successfully run with k6",
+      "id": "smoke",
       "passed": true
     }
   ],
   "grade": "A",
   "level": 100,
-  "timestamp": 1724833956
+  "timestamp": 1731058317
 }
 ```
 </details>

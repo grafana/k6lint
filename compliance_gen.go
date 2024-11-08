@@ -24,12 +24,14 @@ type Check struct {
 
 type Checker string
 
+const CheckerBuild Checker = "build"
 const CheckerExamples Checker = "examples"
 const CheckerGit Checker = "git"
 const CheckerLicense Checker = "license"
 const CheckerModule Checker = "module"
 const CheckerReadme Checker = "readme"
 const CheckerReplace Checker = "replace"
+const CheckerSmoke Checker = "smoke"
 const CheckerVersions Checker = "versions"
 
 // The result of the extension's k6 compliance checks.
