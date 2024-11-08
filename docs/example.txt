@@ -17,5 +17,9 @@ Details
 ✔ git                 
   found git worktree
 ✔ versions            
-  found `6` versions, the latest is `v0.3.0`
+  found `13` versions, the latest is `v1.0.0`
+✔ build               
+  can be built with the latest k6 version
+✔ smoke               
+  `smoke.test.ts` successfully run with k6
 
