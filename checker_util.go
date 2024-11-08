@@ -51,7 +51,7 @@ func build(ctx context.Context, module string, dir string) (filename string, res
 		return "", result
 	}
 
-	result = builder.Build(
+	_, result = builder.Build(
 		ctx,
 		k6foundry.NewPlatform(runtime.GOOS, runtime.GOARCH),
 		"latest",
