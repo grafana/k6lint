@@ -11,7 +11,7 @@ require (
 	github.com/grafana/k6foundry v0.3.0
 	github.com/mattn/go-colorable v0.1.13
 	github.com/spf13/cobra v1.8.1
-	golang.org/x/mod v0.21.0
+	golang.org/x/mod v0.22.0
 )
 
 require (
