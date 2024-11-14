@@ -39,12 +39,13 @@ func checkDefinitions(official bool) []checkDefinition {
 		{id: CheckerModule, score: 2, fn: modCheck.hasGoModule},
 		{id: CheckerReplace, score: 2, fn: modCheck.hasNoReplace},
 		{id: CheckerReadme, score: 5, fn: checkerReadme},
-		{id: CheckerExamples, score: 2, fn: checkerExamples},
 		{id: CheckerLicense, score: 5, fn: checkerLicense},
 		{id: CheckerGit, score: 1, fn: gitCheck.isWorkDir},
 		{id: CheckerVersions, score: 5, fn: gitCheck.hasVersions},
 		{id: CheckerBuild, score: 5, fn: modCheck.canBuild},
 		{id: CheckerSmoke, score: 2, fn: modCheck.smoke},
+		{id: CheckerExamples, score: 2, fn: modCheck.examples},
+		{id: CheckerTypes, score: 2, fn: modCheck.types},
 	}
 
 	if !official {

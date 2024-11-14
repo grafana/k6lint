@@ -2,7 +2,9 @@ package k6lint
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"io/fs"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -14,6 +16,7 @@ import (
 type moduleChecker struct {
 	file *modfile.File
 	exe  string
+	js   bool
 }
 
 func newModuleChecker() *moduleChecker {
@@ -58,6 +61,28 @@ func (mc *moduleChecker) canBuild(ctx context.Context, dir string) *checkResult 
 		return checkError(err)
 	}
 
+	out, err := exec.CommandContext(ctx, exe, "version").CombinedOutput() //nolint:gosec
+	if err != nil {
+		return checkError(err)
+	}
+
+	rex, err := regexp.Compile("(?i)  " + mc.file.Module.Mod.String() + "[^,]+, [^ ]+ \\[(?P<type>[a-z]+)\\]")
+	if err != nil {
+		return checkError(err)
+	}
+
+	subs := rex.FindAllSubmatch(out, -1)
+	if subs == nil {
+		return checkFailed(mc.file.Module.Mod.String() + " is not in the version command's output")
+	}
+
+	for _, one := range subs {
+		if string(one[rex.SubexpIndex("type")]) == "js" {
+			mc.js = true
+			break
+		}
+	}
+
 	mc.exe = exe
 
 	return checkPassed("can be built with the latest k6 version")
@@ -69,6 +94,10 @@ var reSmoke = regexp.MustCompile(`(?i)^smoke(\.test)?\.(?:js|ts)`)
 func (mc *moduleChecker) smoke(ctx context.Context, dir string) *checkResult {
 	if mc.exe == "" {
 		return checkFailed("can't build")
+	}
+
+	if !mc.js {
+		return checkPassed("skipped due to output extension")
 	}
 
 	filename, shortname, err := findFile(reSmoke,
@@ -95,4 +124,79 @@ func (mc *moduleChecker) smoke(ctx context.Context, dir string) *checkResult {
 	}
 
 	return checkPassed("`%s` successfully run with k6", shortname)
+}
+
+var reIndexDTS = regexp.MustCompile("^index.d.ts$")
+
+func (mc *moduleChecker) types(_ context.Context, dir string) *checkResult {
+	if mc.exe == "" {
+		return checkFailed("can't build")
+	}
+
+	if !mc.js {
+		return checkPassed("skipped due to output extension")
+	}
+
+	_, shortname, err := findFile(reIndexDTS,
+		dir,
+		filepath.Join(dir, "docs"),
+	)
+	if err != nil {
+		return checkError(err)
+	}
+
+	if len(shortname) > 0 {
+		return checkPassed("found `index.d.ts` file")
+	}
+
+	return checkFailed("no `index.d.ts` file found")
+}
+
+//nolint:forbidigo
+func (mc *moduleChecker) examples(_ context.Context, dir string) *checkResult {
+	if mc.exe == "" {
+		return checkFailed("can't build")
+	}
+
+	if !mc.js {
+		return checkPassed("skipped due to output extension")
+	}
+
+	dir = filepath.Join(dir, "examples")
+
+	info, err := os.Stat(dir)
+	if err != nil {
+		if errors.Is(err, os.ErrNotExist) {
+			return checkFailed("missing `examples` directory")
+		}
+
+		return checkError(err)
+	}
+
+	if !info.IsDir() {
+		return checkFailed("`examples` is not a directory")
+	}
+
+	hasRegular := false
+
+	err = filepath.WalkDir(dir, func(_ string, entry fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if entry.Type().IsRegular() {
+			hasRegular = true
+		}
+
+		return nil
+	})
+	if err != nil {
+		return checkError(err)
+	}
+
+	if hasRegular {
+		return checkPassed("found `examples` as examples directory")
+	}
+
+	return checkFailed("no examples found in the `examples` directory")
 }

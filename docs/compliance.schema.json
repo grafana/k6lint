@@ -84,7 +84,8 @@
         "versions",
         "build",
         "smoke",
-        "codeowners"
+        "codeowners",
+        "types"
       ]
     }
   }

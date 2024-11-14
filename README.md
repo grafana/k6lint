@@ -22,6 +22,7 @@ The detailed result of the checks are described in a [JSON schema](https://grafa
   - `build` - checks if k6 can be built with the extension
   - `smoke` - checks if the smoke test script exists and runs successfully (`smoke.js`, `smoke.ts`, `smoke.test.js` or `smoke.test.ts` in the `test`,`tests`, `examples` or the base directory)
   - `codeowners` - checks if there is a CODEOWNERS file (for official extensions)
+  - `types` - checks if the TypeScript API declaration file exists (`index.d.ts` in the `docs` or the base directory)
 
 ## Install
 
