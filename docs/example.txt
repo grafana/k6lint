@@ -10,8 +10,6 @@ Details
   no `replace` directive in the `go.mod` file
 ✔ readme              
   found `README.md` as README file
-✔ examples            
-  found `examples` as examples directory
 ✔ license             
   found `LICENSE` as `Apache-2.0` license
 ✔ git                 
@@ -22,4 +20,8 @@ Details
   can be built with the latest k6 version
 ✔ smoke               
   `smoke.test.ts` successfully run with k6
+✔ examples            
+  found `examples` as examples directory
+✔ types               
+  found `index.d.ts` file
 

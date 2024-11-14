@@ -16,11 +16,6 @@
       "passed": true
     },
     {
-      "details": "found `examples` as examples directory",
-      "id": "examples",
-      "passed": true
-    },
-    {
       "details": "found `LICENSE` as `Apache-2.0` license",
       "id": "license",
       "passed": true
@@ -44,9 +39,19 @@
       "details": "`smoke.test.ts` successfully run with k6",
       "id": "smoke",
       "passed": true
+    },
+    {
+      "details": "found `examples` as examples directory",
+      "id": "examples",
+      "passed": true
+    },
+    {
+      "details": "found `index.d.ts` file",
+      "id": "types",
+      "passed": true
     }
   ],
   "grade": "A",
   "level": 100,
-  "timestamp": 1731058317
+  "timestamp": 1731604019
 }
