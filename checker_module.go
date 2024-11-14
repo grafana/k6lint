@@ -71,7 +71,7 @@ func (mc *moduleChecker) smoke(ctx context.Context, dir string) *checkResult {
 		return checkFailed("can't build")
 	}
 
-	filename, sortname, err := findFile(reSmoke,
+	filename, shortname, err := findFile(reSmoke,
 		dir,
 		filepath.Join(dir, "test"),
 		filepath.Join(dir, "tests"),
@@ -81,7 +81,7 @@ func (mc *moduleChecker) smoke(ctx context.Context, dir string) *checkResult {
 		return checkError(err)
 	}
 
-	if len(sortname) == 0 {
+	if len(shortname) == 0 {
 		return checkFailed("no smoke test file found")
 	}
 
@@ -94,5 +94,5 @@ func (mc *moduleChecker) smoke(ctx context.Context, dir string) *checkResult {
 		return checkError(err)
 	}
 
-	return checkPassed("`%s` successfully run with k6", sortname)
+	return checkPassed("`%s` successfully run with k6", shortname)
 }
