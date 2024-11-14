@@ -94,6 +94,10 @@ func (mc *moduleChecker) smoke(ctx context.Context, dir string) *checkResult {
 		return checkFailed("can't build")
 	}
 
+	if !mc.js {
+		return checkPassed("skipped due to output extension")
+	}
+
 	filename, shortname, err := findFile(reSmoke,
 		dir,
 		filepath.Join(dir, "test"),
