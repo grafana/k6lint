@@ -45,6 +45,7 @@ func checkDefinitions(official bool) []checkDefinition {
 		{id: CheckerVersions, score: 5, fn: gitCheck.hasVersions},
 		{id: CheckerBuild, score: 5, fn: modCheck.canBuild},
 		{id: CheckerSmoke, score: 2, fn: modCheck.smoke},
+		{id: CheckerTypes, score: 2, fn: modCheck.types},
 	}
 
 	if !official {

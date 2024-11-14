@@ -80,3 +80,4 @@ $defs:
       - build
       - smoke
       - codeowners
+      - types

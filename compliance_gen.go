@@ -33,6 +33,7 @@ const CheckerModule Checker = "module"
 const CheckerReadme Checker = "readme"
 const CheckerReplace Checker = "replace"
 const CheckerSmoke Checker = "smoke"
+const CheckerTypes Checker = "types"
 const CheckerVersions Checker = "versions"
 
 // The result of the extension's k6 compliance checks.
