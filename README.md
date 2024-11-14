@@ -2,7 +2,7 @@
 
 **Linter for k6 extensions**
 
-k6lint is a command line tool and a library for static analysis of the source of k6 extensions. The analysis is done without building a k6 executable with the extension.
+k6lint is a command line tool and a library for static analysis of the source of k6 extensions.
 
 The contents of the source directory are used for analysis. If the directory is a git workdir, it also analyzes the git metadata. The analysis is completely local and does not use external APIs (e.g. repository manager API) or services.
 
@@ -20,7 +20,8 @@ The detailed result of the checks are described in a [JSON schema](https://grafa
   - `git` - checks if the directory is git workdir
   - `versions` - checks for semantic versioning git tags
   - `build` - checks if k6 can be built with the extension
-  - `smoke` - checks if the smoke test script exists and runs successfully
+  - `smoke` - checks if the smoke test script exists and runs successfully (`smoke.js`, `smoke.ts`, `smoke.test.js` or `smoke.test.ts` in the `test`,`tests`, `examples` or the base directory)
+  - `codeowners` - checks if there is a CODEOWNERS file (for official extensions)
 
 ## Install
 

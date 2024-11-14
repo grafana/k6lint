@@ -4,6 +4,9 @@ package k6lint
 type Options struct {
 	// Passed contains a list of checkers that have already been marked as successful.
 	Passed []Checker
+
+	// Official can be set true to enable extra checkers (like codeowners) for official extensions.
+	Official bool
 }
 
 func passedChecks(checkers []Checker) map[Checker]Check {

@@ -31,7 +31,7 @@ type checkDefinition struct {
 	score int
 }
 
-func checkDefinitions() []checkDefinition {
+func checkDefinitions(official bool) []checkDefinition {
 	modCheck := newModuleChecker()
 	gitCheck := newGitChecker()
 
@@ -47,11 +47,21 @@ func checkDefinitions() []checkDefinition {
 		{id: CheckerSmoke, score: 2, fn: modCheck.smoke},
 	}
 
+	if !official {
+		return defs
+	}
+
+	extra := []checkDefinition{
+		{id: CheckerCodeowners, score: 2, fn: checkerCodeowners},
+	}
+
+	defs = append(defs, extra...)
+
 	return defs
 }
 
 func runChecks(ctx context.Context, dir string, opts *Options) ([]Check, int) {
-	checkDefs := checkDefinitions()
+	checkDefs := checkDefinitions(opts.Official)
 	results := make([]Check, 0, len(checkDefs))
 	passed := passedChecks(opts.Passed)
 
@@ -94,7 +104,10 @@ func ParseChecker(val string) (Checker, error) {
 		CheckerExamples,
 		CheckerLicense,
 		CheckerGit,
-		CheckerVersions:
+		CheckerVersions,
+		CheckerBuild,
+		CheckerSmoke,
+		CheckerCodeowners:
 
 		return v, nil
 	default:

@@ -27,6 +27,7 @@ type options struct {
 	passing   k6lint.Grade
 	passedStr []string
 	passed    []k6lint.Checker
+	official  bool
 }
 
 // New creates new cobra command for exec command.
@@ -69,6 +70,7 @@ func New() (*cobra.Command, error) {
 	flags.SortFlags = false
 
 	flags.Var(&opts.passing, "passing", "set lowest passing grade")
+	flags.BoolVar(&opts.official, "official", false, "enable extra checks for official extensions")
 	flags.BoolVarP(&opts.quiet, "quiet", "q", false, "no output, only validation")
 	flags.StringVarP(&opts.out, "out", "o", "", "write output to file instead of stdout")
 	flags.BoolVar(&opts.json, "json", false, "generate JSON output")
@@ -125,7 +127,7 @@ func run(ctx context.Context, args []string, opts *options) (result error) {
 		output = file
 	}
 
-	compliance, err := k6lint.Lint(ctx, dir, &k6lint.Options{Passed: opts.passed})
+	compliance, err := k6lint.Lint(ctx, dir, &k6lint.Options{Passed: opts.passed, Official: opts.official})
 	if err != nil {
 		return err
 	}
