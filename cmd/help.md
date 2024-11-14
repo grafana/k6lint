@@ -1,6 +1,6 @@
 Static analyzer for k6 extensions
 
-k6lint analyzes the source of the k6 extension without building a k6 executable with the extension.
+k6lint analyzes the source of the k6 extension and try to build k6 with the extension.
 
 By default, text output is generated. The `--json` flag can be used to generate the result in JSON format.
 
