@@ -55,8 +55,6 @@ Details
   no `replace` directive in the `go.mod` file
 ✔ readme              
   found `README.md` as README file
-✔ examples            
-  found `examples` as examples directory
 ✔ license             
   found `LICENSE` as `Apache-2.0` license
 ✔ git                 
@@ -67,6 +65,10 @@ Details
   can be built with the latest k6 version
 ✔ smoke               
   `smoke.test.ts` successfully run with k6
+✔ examples            
+  found `examples` as examples directory
+✔ types               
+  found `index.d.ts` file
 
 ```
 
@@ -89,11 +91,6 @@ Details
     {
       "details": "found `README.md` as README file",
       "id": "readme",
-      "passed": true
-    },
-    {
-      "details": "found `examples` as examples directory",
-      "id": "examples",
       "passed": true
     },
     {
@@ -120,11 +117,21 @@ Details
       "details": "`smoke.test.ts` successfully run with k6",
       "id": "smoke",
       "passed": true
+    },
+    {
+      "details": "found `examples` as examples directory",
+      "id": "examples",
+      "passed": true
+    },
+    {
+      "details": "found `index.d.ts` file",
+      "id": "types",
+      "passed": true
     }
   ],
   "grade": "A",
   "level": 100,
-  "timestamp": 1731058317
+  "timestamp": 1731604019
 }
 ```
 </details>
@@ -140,7 +147,7 @@ Linter for k6 extensions
 
 Static analyzer for k6 extensions
 
-k6lint analyzes the source of the k6 extension without building a k6 executable with the extension.
+k6lint analyzes the source of the k6 extension and try to build k6 with the extension.
 
 By default, text output is generated. The `--json` flag can be used to generate the result in JSON format.
 
@@ -156,6 +163,7 @@ k6lint [flags] [directory]
 
 ```
       --passing A|B|C|D|E|F   set lowest passing grade (default C)
+      --official              enable extra checks for official extensions
   -q, --quiet                 no output, only validation
   -o, --out string            write output to file instead of stdout
       --json                  generate JSON output
