@@ -66,26 +66,33 @@ func (mc *moduleChecker) canBuild(ctx context.Context, dir string) *checkResult 
 		return checkError(err)
 	}
 
+	mc.exe = exe
+	mc.js = mc.isJS(out)
+
+	return checkPassed("can be built with the latest k6 version")
+}
+
+func (mc *moduleChecker) isJS(out []byte) bool {
 	rex, err := regexp.Compile("(?i)  " + mc.file.Module.Mod.String() + "[^,]+, [^ ]+ \\[(?P<type>[a-z]+)\\]")
 	if err != nil {
-		return checkError(err)
+		return false
 	}
 
 	subs := rex.FindAllSubmatch(out, -1)
 	if subs == nil {
-		return checkFailed(mc.file.Module.Mod.String() + " is not in the version command's output")
+		return false
 	}
+
+	js := false
 
 	for _, one := range subs {
 		if string(one[rex.SubexpIndex("type")]) == "js" {
-			mc.js = true
+			js = true
 			break
 		}
 	}
 
-	mc.exe = exe
-
-	return checkPassed("can be built with the latest k6 version")
+	return js
 }
 
 var reSmoke = regexp.MustCompile(`(?i)^smoke(\.test)?\.(?:js|ts)`)
@@ -105,6 +112,7 @@ func (mc *moduleChecker) smoke(ctx context.Context, dir string) *checkResult {
 		filepath.Join(dir, "test"),
 		filepath.Join(dir, "tests"),
 		filepath.Join(dir, "examples"),
+		filepath.Join(dir, "scripts"),
 	)
 	if err != nil {
 		return checkError(err)
@@ -140,6 +148,7 @@ func (mc *moduleChecker) types(_ context.Context, dir string) *checkResult {
 	_, shortname, err := findFile(reIndexDTS,
 		dir,
 		filepath.Join(dir, "docs"),
+		filepath.Join(dir, "api-docs"),
 	)
 	if err != nil {
 		return checkError(err)
