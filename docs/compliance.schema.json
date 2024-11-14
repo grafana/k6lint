@@ -83,7 +83,8 @@
         "git",
         "versions",
         "build",
-        "smoke"
+        "smoke",
+        "codeowners"
       ]
     }
   }

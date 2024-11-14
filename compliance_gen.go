@@ -25,6 +25,7 @@ type Check struct {
 type Checker string
 
 const CheckerBuild Checker = "build"
+const CheckerCodeowners Checker = "codeowners"
 const CheckerExamples Checker = "examples"
 const CheckerGit Checker = "git"
 const CheckerLicense Checker = "license"
