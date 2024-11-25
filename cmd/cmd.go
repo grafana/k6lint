@@ -133,7 +133,9 @@ func run(ctx context.Context, args []string, opts *options) (result error) {
 	}
 
 	if isGitHubAction() {
-		emitOutput(compliance)
+		if err := emitOutput(compliance); err != nil {
+			return err
+		}
 	}
 
 	if opts.quiet {
