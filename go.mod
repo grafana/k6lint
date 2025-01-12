@@ -9,7 +9,7 @@ require (
 	github.com/go-git/go-git/v5 v5.13.1
 	github.com/grafana/clireadme v0.1.0
 	github.com/grafana/k6foundry v0.3.0
-	github.com/mattn/go-colorable v0.1.13
+	github.com/mattn/go-colorable v0.1.14
 	github.com/spf13/cobra v1.8.1
 	golang.org/x/mod v0.22.0
 )
@@ -45,7 +45,7 @@ require (
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
 	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/sys v0.29.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/tools v0.23.0 // indirect
 	gonum.org/v1/gonum v0.8.2 // indirect
