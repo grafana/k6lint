@@ -34,9 +34,9 @@ func build(ctx context.Context, module string, dir string) (filename string, res
 		}
 	}()
 
-	builder, err := k6foundry.NewNativeBuilder(
+	foundry, err := k6foundry.NewNativeFoundry(
 		ctx,
-		k6foundry.NativeBuilderOpts{
+		k6foundry.NativeFoundryOpts{
 			Logger: slog.New(slog.NewTextHandler(&out, &slog.HandlerOptions{Level: slog.LevelError})),
 			Stdout: &out,
 			Stderr: &out,
@@ -51,11 +51,18 @@ func build(ctx context.Context, module string, dir string) (filename string, res
 		return "", result
 	}
 
-	_, result = builder.Build(
+	platform, err := k6foundry.NewPlatform(runtime.GOOS, runtime.GOARCH)
+	if err != nil {
+		result = err
+		return "", result
+	}
+
+	_, result = foundry.Build(
 		ctx,
-		k6foundry.NewPlatform(runtime.GOOS, runtime.GOARCH),
+		platform,
 		"latest",
 		[]k6foundry.Module{{Path: module, ReplacePath: dir}},
+		nil,
 		nil,
 		exe,
 	)
