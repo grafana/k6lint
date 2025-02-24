@@ -10,7 +10,7 @@ require (
 	github.com/grafana/clireadme v0.1.0
 	github.com/grafana/k6foundry v0.3.0
 	github.com/mattn/go-colorable v0.1.14
-	github.com/spf13/cobra v1.8.1
+	github.com/spf13/cobra v1.9.1
 	golang.org/x/mod v0.23.0
 )
 
@@ -39,7 +39,7 @@ require (
 	github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 // indirect
 	github.com/shogo82148/go-shuffle v1.0.1 // indirect
 	github.com/skeema/knownhosts v1.3.0 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/spf13/pflag v1.0.6 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	golang.org/x/crypto v0.32.0 // indirect
 	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
