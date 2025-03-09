@@ -1,6 +1,7 @@
 module github.com/grafana/k6lint
 
 go 1.22.4
+toolchain go1.23.7
 
 require (
 	github.com/Masterminds/semver/v3 v3.3.1
@@ -11,7 +12,7 @@ require (
 	github.com/grafana/k6foundry v0.4.5
 	github.com/mattn/go-colorable v0.1.14
 	github.com/spf13/cobra v1.9.1
-	golang.org/x/mod v0.23.0
+	golang.org/x/mod v0.24.0
 )
 
 require (
