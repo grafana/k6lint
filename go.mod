@@ -1,7 +1,6 @@
 module github.com/grafana/k6lint
 
-go 1.22.4
-toolchain go1.23.6
+go 1.23.0
 
 require (
 	github.com/Masterminds/semver/v3 v3.3.1
