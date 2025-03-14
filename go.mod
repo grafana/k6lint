@@ -2,8 +2,6 @@ module github.com/grafana/k6lint
 
 go 1.23.0
 
-toolchain go1.23.4
-
 require (
 	github.com/Masterminds/semver/v3 v3.3.1
 	github.com/fatih/color v1.18.0
