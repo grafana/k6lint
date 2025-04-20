@@ -8,7 +8,7 @@ require (
 	github.com/go-enry/go-license-detector/v4 v4.3.1
 	github.com/go-git/go-git/v5 v5.14.0
 	github.com/grafana/clireadme v0.1.0
-	github.com/grafana/k6foundry v0.4.5
+	github.com/grafana/k6foundry v0.4.6
 	github.com/mattn/go-colorable v0.1.14
 	github.com/spf13/cobra v1.9.1
 	golang.org/x/mod v0.24.0
