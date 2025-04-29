@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: k6lint
+  title: k6lint
+  description: |
+    k6lint is a command line tool and a library for static analysis of the source of k6 extensions.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: grafana/k6lint
+spec:
+  type: tool
+  owner: group:default/k6-extensions
+  lifecycle: production
