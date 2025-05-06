@@ -2,6 +2,9 @@
 
 **Linter for k6 extensions**
 
+> [!IMPORTANT]
+> **Deprecated**: The linter has been moved to [xk6](https://github.com/grafana/xk6) as a `xk6 lint` subcommand.
+
 k6lint is a command line tool and a library for static analysis of the source of k6 extensions.
 
 The contents of the source directory are used for analysis. If the directory is a git workdir, it also analyzes the git metadata. The analysis is completely local and does not use external APIs (e.g. repository manager API) or services.
